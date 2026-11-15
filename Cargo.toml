@@ -1,0 +1,15 @@
+[package]
+name = "s9_camera_gyroscope"
+version = "0.1.0"
+edition = "2021"
+authors = ["M. Larrabee <PNWcoastie>"]
+description = "Safe Rust (#![forbid(unsafe_code)]) reconstruction of Samsung Galaxy S9 416Hz camera gyroscope drift compensation & 3D rotation matrix DSP (libgyroscope.camera.samsung.so) — Reference artifact for 'The Borrow Checker as a Binary Auditor'"
+license = "MIT OR Apache-2.0"
+repository = "https://github.com/PNWcoastie/borrow-checker-binary-auditor"
+readme = "README.md"
+keywords = ["binary-auditing", "safe-rust", "dsp", "quaternion", "aarch64"]
+categories = ["algorithms", "science::robotics", "embedded", "no-std"]
+
+[lib]
+name = "s9_camera_gyroscope"
+path = "src/lib.rs"

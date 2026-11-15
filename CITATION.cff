@@ -1,0 +1,32 @@
+cff-version: 1.2.0
+title: "The Borrow Checker as a Binary Auditor: Discovering Multi-Generation Android Firmware Defects via #![forbid(unsafe_code)] Safe Rust Reconstruction"
+message: "If you use this research paper, methodology, or companion Safe Rust crate, please cite it using the metadata below."
+type: software
+authors:
+  - family-names: Larrabee
+    given-names: Matthew
+    alias: PNWcoastie
+    affiliation: "Independent Systems & Security Researcher"
+repository-code: "https://github.com/PNWcoastie/borrow-checker-binary-auditor"
+license: MIT OR Apache-2.0
+version: 0.1.0
+date-released: "2026-11-15"
+keywords:
+  - rust
+  - borrow-checker
+  - binary-auditing
+  - reverse-engineering
+  - android-security
+  - firmware-analysis
+  - memory-safety
+  - differential-testing
+abstract: >-
+  Type-Driven Binary Auditing via #![forbid(unsafe_code)] Safe Rust Reconstruction uses the
+  Rust compiler's strict type, bounds, lifetime, and concurrency rules as a static and
+  differential vulnerability discovery oracle against stripped aarch64 binaries. Across 11
+  native hardware, imaging, sensor, and biometric subsystems (23 ELF64 binaries, 33 kernels,
+  331,853 SplitMix64 and boundary FFI test vectors), this methodology uncovered 20 deterministic
+  C/C++ implementation and memory-safety defects (SAM-BUG-01 through SAM-BUG-20) and tracked
+  their cross-generation ELF BuildID and .dynsym persistence from Android 10 (SM-G960U) into
+  2026 Android 16 flagships (SM-S938B and SM-S948B). Includes the companion #![forbid(unsafe_code)]
+  Safe Rust crate s9_camera_gyroscope.

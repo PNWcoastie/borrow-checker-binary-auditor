@@ -1,0 +1,24 @@
+{
+  "title": "The Borrow Checker as a Binary Auditor: Discovering Multi-Generation Android Firmware Defects via #![forbid(unsafe_code)] Safe Rust Reconstruction",
+  "upload_type": "publication",
+  "publication_type": "workingpaper",
+  "publication_date": "2026-11-15",
+  "creators": [
+    {
+      "name": "Larrabee, Matthew",
+      "affiliation": "Independent Systems & Security Researcher"
+    }
+  ],
+  "description": "Public research release and companion #![forbid(unsafe_code)] Safe Rust artifact (s9_camera_gyroscope) for 'The Borrow Checker as a Binary Auditor: Discovering Multi-Generation Android Firmware Defects via #![forbid(unsafe_code)] Safe Rust Reconstruction'. Demonstrates how compiling stripped aarch64 C/C++ vendor binaries into #![forbid(unsafe_code)] Safe Rust paired with 331,853-vector differential FFI parity testing acts as a deterministic vulnerability discovery oracle, uncovering 20 C/C++ defects (SAM-BUG-01 through SAM-BUG-20) and verifying their cross-generation survival from Android 10 (SM-G960U) into 2026 Android 16 flagships (SM-S938B and SM-S948B).",
+  "access_right": "open",
+  "license": "MIT",
+  "keywords": [
+    "Rust",
+    "Borrow Checker",
+    "Binary Auditing",
+    "Android Firmware Security",
+    "Memory Safety",
+    "AArch64 Reverse Engineering",
+    "Differential Testing"
+  ]
+}
