@@ -3,6 +3,8 @@
 **Author:** M. Larrabee (`PNWcoastie`), Independent Systems & Security Researcher  
 **Date:** November 2026  
 **Document Classification:** Public Research Release (Post-Coordinated-Disclosure Edition)  
+**DOI:** [`10.5281/zenodo.24261883`](https://doi.org/10.5281/zenodo.24261883) (Concept DOI: [`10.5281/zenodo.24261882`](https://doi.org/10.5281/zenodo.24261882))  
+**Companion Artifact & Reference Crate:** [`PNWcoastie/borrow-checker-binary-auditor`](https://github.com/PNWcoastie/borrow-checker-binary-auditor) (`s9_camera_gyroscope`)  
 **Target Ecosystems Evaluated:**
 
 * **Baseline Generation (2018 / Android 10):** Samsung Galaxy S9 (`SM-G960U` / `starqltesq`, Qualcomm Snapdragon 845 `SDM845`, Firmware `G960USQU9FVB2`)  

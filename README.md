@@ -1,5 +1,6 @@
 # The Borrow Checker as a Binary Auditor (`s9_camera_gyroscope`)
 
+[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.24261883.svg)](https://doi.org/10.5281/zenodo.24261883)
 [![Language: Safe Rust](https://img.shields.io/badge/rust-%23!%5Bforbid(unsafe__code)%5D-brightgreen.svg)](https://www.rust-lang.org/)
 [![Verification: 30,155 FFI Vectors](https://img.shields.io/badge/verify__rust__parity-30%2C155%20vectors%20(0%20ULP)-blue.svg)](./docs/STAGE3_4_PARITY_SCORECARD.md)
 [![License: MIT OR Apache-2.0](https://img.shields.io/badge/license-MIT%20OR%20Apache--2.0-informational.svg)](./LICENSE-MIT)
@@ -8,7 +9,8 @@ Official companion artifact and `#![forbid(unsafe_code)]` Safe Rust reference cr
 
 > **The Borrow Checker as a Binary Auditor: Discovering Multi-Generation Android Firmware Defects via `#![forbid(unsafe_code)]` Safe Rust Reconstruction**  
 > **Author:** M. Larrabee (`PNWcoastie`), Independent Systems & Security Researcher (November 2026)  
-> 📄 **[Read the Full Research Paper (`PAPER.md`)](./PAPER.md)**
+> **DOI:** [`10.5281/zenodo.24261883`](https://doi.org/10.5281/zenodo.24261883) (Concept DOI: [`10.5281/zenodo.24261882`](https://doi.org/10.5281/zenodo.24261882))  
+> 📄 **[Read the Full Research Paper (`PAPER.md`)](./PAPER.md)** | 🏛️ **[View on Zenodo](https://zenodo.org/records/24261883)**
 
 ---
 
@@ -65,7 +67,9 @@ If you reference this methodology, paper, or artifact in academic or security re
   year         = {2026},
   month        = nov,
   publisher    = {Zenodo},
-  url          = {https://github.com/PNWcoastie/borrow-checker-binary-auditor}
+  version      = {v0.1.0},
+  doi          = {10.5281/zenodo.24261883},
+  url          = {https://doi.org/10.5281/zenodo.24261883}
 }
 ```
 
