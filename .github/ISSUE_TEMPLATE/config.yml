@@ -1,0 +1,8 @@
+blank_issues_enabled: false
+contact_links:
+  - name: GitHub Discussions (General Q&A & Academic Exchange)
+    url: https://github.com/PNWcoastie/borrow-checker-binary-auditor/discussions
+    about: Ask open-ended questions or discuss binary lifting and safe systems reconstruction.
+  - name: Security & Responsible Disclosure Policy (SECURITY.md)
+    url: https://github.com/PNWcoastie/borrow-checker-binary-auditor/blob/main/SECURITY.md
+    about: Please review our clean-room policy before reporting sensitive third-party binary vulnerabilities.

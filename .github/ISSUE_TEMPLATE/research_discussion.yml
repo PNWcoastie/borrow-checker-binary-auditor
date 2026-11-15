@@ -1,0 +1,38 @@
+name: Research Discussion or Methodology Question
+description: Open a discussion on the paper, #![forbid(unsafe_code)] binary auditing methodology, or related literature.
+title: "[Discussion]: "
+labels: ["research-discussion"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Thank you for engaging with **"The Borrow Checker as a Binary Auditor"**! Use this form to discuss the methodology, case studies, or related academic work.
+  - type: dropdown
+    id: section
+    attributes:
+      label: Primary Paper Section / Topic
+      options:
+        - "Section 2: Four-Stage #![forbid(unsafe_code)] Methodology"
+        - "Section 3: Master Defect Taxonomy (SAM-BUG-01 .. SAM-BUG-20)"
+        - "Section 4: Deep-Dive Case Studies (4.1 - 4.5)"
+        - "Section 5: Cross-Generation Binary Continuity & BuildID Tracking"
+        - "Section 6: Differential Parity & Throughput (331,853 Vectors)"
+        - "Section 8 & 9: Literature Cross-Audit & Related Work"
+        - "General / Follow-Up Research Direction"
+    validations:
+      required: true
+  - type: textarea
+    id: question_or_comment
+    attributes:
+      label: Discussion Topic or Question
+      description: Share your question, comparison, or theoretical observation.
+      placeholder: "Describe the section, invariant, or related paper you would like to discuss..."
+    validations:
+      required: true
+  - type: checkboxes
+    id: clean_room_ack
+    attributes:
+      label: Clean-Room Policy Acknowledgment
+      options:
+        - label: "I confirm this issue does not attach proprietary third-party `.so` binaries or unredacted exploit payloads."
+          required: true

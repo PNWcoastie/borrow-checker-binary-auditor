@@ -1,0 +1,37 @@
+name: Crate Reproduction or Paper Errata
+description: Report a reproduction issue with the s9_camera_gyroscope crate or suggest a correction/erratum in PAPER.md.
+title: "[Reproduction / Errata]: "
+labels: ["reproduction-or-errata"]
+body:
+  - type: dropdown
+    id: category
+    attributes:
+      label: Category
+      options:
+        - "Crate Build / Parity Test Reproduction (s9_camera_gyroscope)"
+        - "Paper Typo / Formatting / Citation Errata (PAPER.md)"
+        - "Subgraph / Scorecard Documentation (docs/)"
+    validations:
+      required: true
+  - type: input
+    id: environment
+    attributes:
+      label: Rust Toolchain & OS (if reporting a crate issue)
+      placeholder: "e.g., rustc 1.85.0, Linux x86_64 / macOS aarch64"
+    validations:
+      required: false
+  - type: textarea
+    id: details
+    attributes:
+      label: Details
+      description: Provide the exact section/line in `PAPER.md` or the output of `cargo test` / `cargo clippy`.
+      placeholder: "Describe the erratum or reproduction steps..."
+    validations:
+      required: true
+  - type: checkboxes
+    id: clean_room_ack
+    attributes:
+      label: Clean-Room Policy Acknowledgment
+      options:
+        - label: "I confirm this report does not attach proprietary third-party `.so` binaries or unredacted exploit payloads."
+          required: true
