@@ -8,6 +8,15 @@ authors:
     alias: PNWcoastie
     affiliation: "Independent Systems & Security Researcher"
 repository-code: "https://github.com/PNWcoastie/borrow-checker-binary-auditor"
+url: "https://doi.org/10.5281/zenodo.24261883"
+doi: 10.5281/zenodo.24261883
+identifiers:
+  - type: doi
+    value: 10.5281/zenodo.24261883
+    description: "Zenodo DOI for v0.1.0 release"
+  - type: doi
+    value: 10.5281/zenodo.24261882
+    description: "Zenodo Concept DOI (resolves to latest version)"
 license: MIT OR Apache-2.0
 version: 0.1.0
 date-released: "2026-11-15"
