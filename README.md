@@ -69,6 +69,15 @@ If you reference this methodology, paper, or artifact in academic or security re
 }
 ```
 
+## Discussions, Issues & Responsible Disclosure
+
+We welcome academic feedback, methodology discussions, and reproduction reports:
+
+- 💬 **[GitHub Discussions](https://github.com/PNWcoastie/borrow-checker-binary-auditor/discussions):** Open-ended Q&A on type-driven binary auditing, `#![forbid(unsafe_code)]` lifting, and cross-generation firmware continuity.
+- 🔬 **[Open a Research / Methodology Discussion Issue](../../issues/new?template=research_discussion.yml):** Structured discussion on specific paper sections, case studies, or related work.
+- 🛠️ **[Report Crate Reproduction Feedback or Paper Errata](../../issues/new?template=reproduction_or_errata.yml):** Report test vector questions or suggest paper errata.
+- 🛡️ **[Security & Clean-Room Policy (`SECURITY.md`)](./SECURITY.md):** Guidelines on coordinated vulnerability disclosure and strict exclusion of proprietary `.so` binaries.
+
 ## License & Ethics Statement
 
 - **Code & Documentation License:** Dual-licensed under [MIT](./LICENSE-MIT) or [Apache-2.0](./LICENSE-APACHE) at your option.
