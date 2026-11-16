@@ -27,24 +27,25 @@ This repository provides a complete, self-contained demonstration of **Type-Driv
    - `calculate_offset_linear_fitting` (`0x2f70`) & `is_device_not_in_motion_gyro` (`0x34f0`): Least-squares thermal drift regression and 11-sample stationary variance detector (`< 1.0e-5`).
 3. **[`docs/STAGE1_SUBGRAPH_AUDIT.md`](./docs/STAGE1_SUBGRAPH_AUDIT.md):** Stage 1 whole-subgraph AArch64 disassembly, `.rodata` IEEE-754 constants, C++ struct offset tables, and reference C implementations.
 4. **[`docs/STAGE3_4_PARITY_SCORECARD.md`](./docs/STAGE3_4_PARITY_SCORECARD.md):** Stages 3 & 4 closed-loop differential FFI verification scorecard across `30,155` SplitMix64 and boundary test vectors (`0 ULP` divergence).
-5. **[`tests/parity_regression.rs`](./tests/parity_regression.rs):** Deterministic C-oracle bit-exact regression test suite and `SAM-BUG-01` `Filter<50>` bounds-safety proof.
+5. **[`tests/parity_regression.rs`](./tests/parity_regression.rs):** Self-executing `#![forbid(unsafe_code)]` regression suite that replays all `30,155` deterministic SplitMix64 (`seed = 1337420`) + boundary test vectors (`10,064 + 10,064 + 10,027`) against standalone AArch64 instruction-level reference oracles at `0 ULP`, verifies their pinned 64-bit FNV-1a output digests (`0x71aa7ddf5dae91ca`, `0x8086eeb7623194de`, `0xa41722aead52b64d`), and proves `SAM-BUG-01` `Filter<50>` bounds safety.
 
 ---
 
 ## Differential FFI Verification Summary (`s9_camera_gyroscope`)
 
-| Kernel Symbol | Arg Types | Return Type | Parity Status | Vectors Tested | C Oracle (`ns/call`) | Safe Rust (`ns/call`) | Speedup vs. C |
-| :--- | :--- | :--- | :--- | :---: | :---: | :---: | :---: |
-| [`quat_mult_w`](./src/lib.rs#L309-L319) | `["f32"; 8]` | `f32` | **`verified_bit_exact` (`0 ULP`)** | `10,064` | `5.93 ns` | `4.46 ns` | **`1.33×`** |
-| [`rotation_vector_step_w`](./src/lib.rs#L324-L337) | `["f32"×3, "i64", "f32"×4]` | `f32` | **`verified_bit_exact` (`0 ULP`)** | `10,064` | `14.93 ns` | `17.05 ns` | `0.88×` |
-| [`gyro_calibration_pipeline`](./src/lib.rs#L343-L376) | `["bytes"]` | `f32` | **`verified_bit_exact` (`0 ULP`)** | `10,027` | `634.72 ns` | `611.44 ns` | **`1.04×`** |
+| Kernel Symbol | Arg Types | Return Type | Parity Status | Vectors Tested | 64-Bit FNV-1a Output Digest | C Oracle (`ns/call`) | Safe Rust (`ns/call`) | Speedup vs. C |
+| :--- | :--- | :--- | :--- | :---: | :---: | :---: | :---: | :---: |
+| [`quat_mult_w`](./src/lib.rs#L309-L319) | `["f32"; 8]` | `f32` | **`verified_bit_exact` (`0 ULP`)** | `10,064` | `0x71aa7ddf5dae91ca` | `5.93 ns` | `4.46 ns` | **`1.33×`** |
+| [`rotation_vector_step_w`](./src/lib.rs#L324-L337) | `["f32"×3, "i64", "f32"×4]` | `f32` | **`verified_bit_exact` (`0 ULP`)** | `10,064` | `0x8086eeb7623194de` | `14.93 ns` | `17.05 ns` | `0.88×` |
+| [`gyro_calibration_pipeline`](./src/lib.rs#L343-L376) | `["bytes"]` | `f32` | **`verified_bit_exact` (`0 ULP`)** | `10,027` | `0xa41722aead52b64d` | `634.72 ns` | `611.44 ns` | **`1.04×`** |
 
 ---
 
 ## Quickstart: Build, Test, Lint & Docs
 
 ```bash
-# Run unit tests and deterministic C-oracle parity regression vectors
+# Self-execute all 30,155 SplitMix64 + boundary vectors (10,064 + 10,064 + 10,027),
+# verify their 64-bit FNV-1a state digests (0 ULP), and run SAM-BUG-01 bounds proofs
 cargo test
 
 # Enforce zero compiler or Clippy warnings across all targets

@@ -4,7 +4,7 @@
 
 - **Target Artifact:** `/system/lib64/libgyroscope.camera.samsung.so` (SHA-256: `d6a0bfb60a8352bb4029b4e39a99f280f8592693fa8e46734cc9547794f3ee97`, `"GYRODRIFT :: Library Version - 1.20.3 Release Date - 06-March-19"`)
 - **Reconstructed Safe Rust Crate:** [`s9_camera_gyroscope`](../src/lib.rs)
-- **Deterministic Regression Suite:** [`tests/parity_regression.rs`](../tests/parity_regression.rs)
+- **Deterministic Regression Suite:** [`tests/parity_regression.rs`](../tests/parity_regression.rs) (`cargo test` self-executes all `30,155` SplitMix64 + boundary vectors — `10,064 + 10,064 + 10,027` — against standalone AArch64 instruction-level reference oracles at `0` ULP and verifies pinned 64-bit FNV-1a output digests `0x71aa7ddf5dae91ca`, `0x8086eeb7623194de`, and `0xa41722aead52b64d`)
 - **Verification Engine:** `verify_rust_parity` (`harness_mode: "native-rustc"`, `seed: 1337420`, `float_ulp_tolerance: 0`, `forbid_unsafe: true`)
 - **Overall Parity Verdict:** **`verified_bit_exact`** (`0` ULP divergence across `30,155` total randomized SplitMix64 + boundary FFI test vectors and `300,000` benchmark invocations)
 
