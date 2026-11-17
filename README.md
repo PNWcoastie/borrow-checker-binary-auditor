@@ -1,5 +1,7 @@
 # The Borrow Checker as a Binary Auditor (`s9_camera_gyroscope`)
 
+[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.24261883.svg)](https://doi.org/10.5281/zenodo.24261883)
+[![Part II Follow-Up DOI](https://img.shields.io/badge/Part%20II%20DOI-10.5281%2Fzenodo.24295305-informational.svg)](https://doi.org/10.5281/zenodo.24295305)
 [![Language: Safe Rust](https://img.shields.io/badge/rust-%23!%5Bforbid(unsafe__code)%5D-brightgreen.svg)](https://www.rust-lang.org/)
 [![Verification: 30,155 FFI Vectors](https://img.shields.io/badge/verify__rust__parity-30%2C155%20vectors%20(0%20ULP)-blue.svg)](./docs/STAGE3_4_PARITY_SCORECARD.md)
 [![License: MIT OR Apache-2.0](https://img.shields.io/badge/license-MIT%20OR%20Apache--2.0-informational.svg)](./LICENSE-MIT)
@@ -8,7 +10,9 @@ Official companion artifact and `#![forbid(unsafe_code)]` Safe Rust reference cr
 
 > **The Borrow Checker as a Binary Auditor: Discovering Multi-Generation Android Firmware Defects via `#![forbid(unsafe_code)]` Safe Rust Reconstruction**  
 > **Author:** M. Larrabee (`PNWcoastie`), Independent Systems & Security Researcher (November 2026)  
-> 📄 **[Read the Full Research Paper (`PAPER.md`)](./PAPER.md)**
+> **DOI (Part I):** [`10.5281/zenodo.24261883`](https://doi.org/10.5281/zenodo.24261883) (Concept DOI: [`10.5281/zenodo.24261882`](https://doi.org/10.5281/zenodo.24261882))  
+> **Follow-Up Study (Part II — Stage 1.5 Reachability & Fossil Debt):** [`10.5281/zenodo.24295305`](https://doi.org/10.5281/zenodo.24295305) ([`PNWcoastie/binary-reachability-and-fossil-debt`](https://github.com/PNWcoastie/binary-reachability-and-fossil-debt))  
+> 📄 **[Read the Full Research Paper (`PAPER.md`)](./PAPER.md)** | 🏛️ **[View on Zenodo](https://zenodo.org/records/24261883)** | ➡️ **[Read Part II (`binary-reachability-and-fossil-debt`)](https://github.com/PNWcoastie/binary-reachability-and-fossil-debt)**
 
 ---
 
@@ -25,24 +29,25 @@ This repository provides a complete, self-contained demonstration of **Type-Driv
    - `calculate_offset_linear_fitting` (`0x2f70`) & `is_device_not_in_motion_gyro` (`0x34f0`): Least-squares thermal drift regression and 11-sample stationary variance detector (`< 1.0e-5`).
 3. **[`docs/STAGE1_SUBGRAPH_AUDIT.md`](./docs/STAGE1_SUBGRAPH_AUDIT.md):** Stage 1 whole-subgraph AArch64 disassembly, `.rodata` IEEE-754 constants, C++ struct offset tables, and reference C implementations.
 4. **[`docs/STAGE3_4_PARITY_SCORECARD.md`](./docs/STAGE3_4_PARITY_SCORECARD.md):** Stages 3 & 4 closed-loop differential FFI verification scorecard across `30,155` SplitMix64 and boundary test vectors (`0 ULP` divergence).
-5. **[`tests/parity_regression.rs`](./tests/parity_regression.rs):** Deterministic C-oracle bit-exact regression test suite and `SAM-BUG-01` `Filter<50>` bounds-safety proof.
+5. **[`tests/parity_regression.rs`](./tests/parity_regression.rs):** Self-executing `#![forbid(unsafe_code)]` regression suite that replays all `30,155` deterministic SplitMix64 (`seed = 1337420`) + boundary test vectors (`10,064 + 10,064 + 10,027`) against standalone AArch64 instruction-level reference oracles at `0 ULP`, verifies their pinned 64-bit FNV-1a output digests (`0x71aa7ddf5dae91ca`, `0x8086eeb7623194de`, `0xa41722aead52b64d`), and proves `SAM-BUG-01` `Filter<50>` bounds safety.
 
 ---
 
 ## Differential FFI Verification Summary (`s9_camera_gyroscope`)
 
-| Kernel Symbol | Arg Types | Return Type | Parity Status | Vectors Tested | C Oracle (`ns/call`) | Safe Rust (`ns/call`) | Speedup vs. C |
-| :--- | :--- | :--- | :--- | :---: | :---: | :---: | :---: |
-| [`quat_mult_w`](./src/lib.rs#L309-L319) | `["f32"; 8]` | `f32` | **`verified_bit_exact` (`0 ULP`)** | `10,064` | `5.93 ns` | `4.46 ns` | **`1.33×`** |
-| [`rotation_vector_step_w`](./src/lib.rs#L324-L337) | `["f32"×3, "i64", "f32"×4]` | `f32` | **`verified_bit_exact` (`0 ULP`)** | `10,064` | `14.93 ns` | `17.05 ns` | `0.88×` |
-| [`gyro_calibration_pipeline`](./src/lib.rs#L343-L376) | `["bytes"]` | `f32` | **`verified_bit_exact` (`0 ULP`)** | `10,027` | `634.72 ns` | `611.44 ns` | **`1.04×`** |
+| Kernel Symbol | Arg Types | Return Type | Parity Status | Vectors Tested | 64-Bit FNV-1a Output Digest | C Oracle (`ns/call`) | Safe Rust (`ns/call`) | Speedup vs. C |
+| :--- | :--- | :--- | :--- | :---: | :---: | :---: | :---: | :---: |
+| [`quat_mult_w`](./src/lib.rs#L309-L319) | `["f32"; 8]` | `f32` | **`verified_bit_exact` (`0 ULP`)** | `10,064` | `0x71aa7ddf5dae91ca` | `5.93 ns` | `4.46 ns` | **`1.33×`** |
+| [`rotation_vector_step_w`](./src/lib.rs#L324-L337) | `["f32"×3, "i64", "f32"×4]` | `f32` | **`verified_bit_exact` (`0 ULP`)** | `10,064` | `0x8086eeb7623194de` | `14.93 ns` | `17.05 ns` | `0.88×` |
+| [`gyro_calibration_pipeline`](./src/lib.rs#L343-L376) | `["bytes"]` | `f32` | **`verified_bit_exact` (`0 ULP`)** | `10,027` | `0xa41722aead52b64d` | `634.72 ns` | `611.44 ns` | **`1.04×`** |
 
 ---
 
 ## Quickstart: Build, Test, Lint & Docs
 
 ```bash
-# Run unit tests and deterministic C-oracle parity regression vectors
+# Self-execute all 30,155 SplitMix64 + boundary vectors (10,064 + 10,064 + 10,027),
+# verify their 64-bit FNV-1a state digests (0 ULP), and run SAM-BUG-01 bounds proofs
 cargo test
 
 # Enforce zero compiler or Clippy warnings across all targets
@@ -65,7 +70,9 @@ If you reference this methodology, paper, or artifact in academic or security re
   year         = {2026},
   month        = nov,
   publisher    = {Zenodo},
-  url          = {https://github.com/PNWcoastie/borrow-checker-binary-auditor}
+  version      = {v0.1.0},
+  doi          = {10.5281/zenodo.24261883},
+  url          = {https://doi.org/10.5281/zenodo.24261883}
 }
 ```
 
